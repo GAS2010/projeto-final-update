@@ -6,6 +6,15 @@ const host = new URL (DATABASE_URL).host
 
 const neonHttpEndpoint  = `https://${host}/sql`
 
+import { Pool } from 'pg';
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    max: 1
+});
+
+export default pool;
+
 async function executarQueryNeon(querySQL, parametros) 
 {
     try {
