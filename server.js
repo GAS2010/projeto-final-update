@@ -110,6 +110,12 @@ const servidor = http.createServer(async (req, res) => {
     res.end('Página não encontrada')
 })
 
+// vercell n permite que o servidor fique ligado sempre
+if(require.main ===module)
+{
 servidor.listen(PORTA, () => {
     console.log(`Loja do Zé rodando em http://localhost:${PORTA}`)
 })
+}
+
+module.exports = (req, res) => servidor.emit('request', req, res)
